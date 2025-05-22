@@ -19,7 +19,7 @@ function DetailsPage() {
   if (!item) return <div>Item not found</div>;
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex flex-col  h-full  bg-white">
       {/* Top banner with image */}
       <div
         style={{

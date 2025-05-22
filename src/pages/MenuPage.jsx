@@ -132,7 +132,12 @@ function MenuPage() {
         ))}
       </section>
 
-      <section className="grid grid-cols-2 gap-4 px-10 mt-6">
+      <section
+        style={{
+          backgroundColor: themeColor.secondaryColor,
+        }}
+        className="grid grid-cols-2 gap-4 px-10 mt-6"
+      >
         {mockMenuItems
           .filter(
             (item) =>

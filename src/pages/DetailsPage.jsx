@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft, Dot } from "lucide-react";
 import { motion } from "framer-motion";
+import { themeColor } from "../constant";
 
 function DetailsPage() {
   const { state } = useLocation();
@@ -11,12 +12,21 @@ function DetailsPage() {
   const [quantity, setQuantity] = useState(1);
   const [tab, setTab] = useState("details");
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   if (!item) return <div>Item not found</div>;
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* Top banner with image */}
-      <div className="relative bg-red-600 rounded-b-[40px] flex justify-center items-center h-64">
+      <div
+        style={{
+          backgroundColor: themeColor.primaryColor,
+        }}
+        className="relative  rounded-b-[40px] flex justify-center items-center h-64"
+      >
         <button
           onClick={() => navigate(-1)}
           className="absolute top-4 left-4 text-white"

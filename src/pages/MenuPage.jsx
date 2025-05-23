@@ -21,6 +21,19 @@ function MenuPage() {
   const [highlightedCategory, setHighlightedCategory] = useState("All");
   const [isHeaderSmall, setIsHeaderSmall] = useState(false);
 
+  const fullText = `Order for table number: ${tableNumber}`;
+  const [displayedText, setDisplayedText] = useState("");
+
+  useEffect(() => {
+    let index = 0;
+    const interval = setInterval(() => {
+      setDisplayedText(fullText.slice(0, index + 1));
+      index++;
+      if (index === fullText.length) clearInterval(interval);
+    }, 40); // typing speed in ms
+
+    return () => clearInterval(interval);
+  }, [fullText]);
   useEffect(() => {
     const targetSection = document.getElementById("menu-title-section");
     const observer = new IntersectionObserver(
@@ -66,13 +79,13 @@ function MenuPage() {
       <section className="p-10" id="menu-title-section">
         <div
           className="font-semibold"
-          style={{ fontStyle: "italic", fontSize: 20 }}
+          style={{
+            fontStyle: "italic",
+            fontSize: 20,
+            color: themeColor.fontColor,
+          }}
         >
-          Order for table{" "}
-          <span style={{ color: themeColor.primaryColor }}>
-            {" "}
-            number: {tableNumber}
-          </span>{" "}
+          {displayedText}
         </div>
       </section>
 
@@ -136,7 +149,7 @@ function MenuPage() {
         style={{
           backgroundColor: themeColor.secondaryColor,
         }}
-        className="grid grid-cols-2 gap-4 px-10 mt-6"
+        className="grid grid-cols-2 gap-4 px-10 mt-6  py-10"
       >
         {mockMenuItems
           .filter(
